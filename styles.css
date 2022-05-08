@@ -1,0 +1,35 @@
+.books {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
+    gap: 10px;
+}
+
+body {
+    height: 100vh;
+    display: grid;
+    grid-template-areas: 
+    '. . .'
+    '. main .'
+    '. . .';
+} 
+
+.container {
+    grid-area: main;
+    background-color: cadetblue;
+    text-align: center;
+    overflow: auto;
+} 
+
+ .cards {
+    /* display: grid; */
+    background-color: wheat;
+    gap: 2rem;
+    padding: 1rem;
+} 
+
+.removeButton {
+    background-color: black;
+    color: white;
+    border: 0;
+}
