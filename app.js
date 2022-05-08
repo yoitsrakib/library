@@ -27,19 +27,33 @@ function displayBooks() {
     }
   
     //loop over library
-    myLibrary.forEach(myLibrary => {
+    let index = 0;
+    myLibrary.forEach(myLibrarys => {
         const card = document.createElement('div');
         card.classList.add('cards');
         books.appendChild(card);
+
+        //remove button
         const removeButton = document.createElement('button');
         removeButton.classList.add('removeButton')
         removeButton.textContent = 'Remove';
+
+        removeButton.dataset.linkedArray = index;
+        index++
         card.appendChild(removeButton);
-      
-        for (let key in myLibrary) {
-            console.log(`${key}: ${myLibrary[key]}`);
+
+        removeButton.addEventListener('click', removeBook);
+        function removeBook(){
+            let bookToRemove = removeButton.dataset.linkedArray
+            myLibrary.splice(parseInt(bookToRemove), 1);
+            card.remove();
+            displayBooks();
+        }
+
+        for (let key in myLibrarys) {
+            console.log(`${key}: ${myLibrarys[key]}`);
             const paragraph = document.createElement('p');
-            paragraph.textContent=(`${key}: ${myLibrary[key]}`);
+            paragraph.textContent=(`${key}: ${myLibrarys[key]}`);
             card.appendChild(paragraph);
             
         }
