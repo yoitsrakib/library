@@ -39,7 +39,7 @@ function displayBooks() {
         removeButton.textContent = 'Remove';
 
         removeButton.dataset.linkedArray = index;
-        index++
+       
         card.appendChild(removeButton);
 
         removeButton.addEventListener('click', removeBook);
@@ -50,6 +50,34 @@ function displayBooks() {
             displayBooks();
         }
 
+        const readStatusButton = document.createElement("button");
+        readStatusButton.classList.add("readStatus");
+        readStatusButton.textContent = "Change Read Status";
+
+       
+        readStatusButton.dataset.linkedArray = index;
+        card.appendChild(readStatusButton);
+
+     
+        readStatusButton.addEventListener("click", toggleReadStatus);
+
+        function toggleReadStatus() {
+            let retrieveBookToToggle = readStatusButton.dataset.linkedArray;
+            Book.prototype = Object.create(Book.prototype);
+            const toggleBook = new Book();
+
+            
+         
+            if ((myLibrary[parseInt(retrieveBookToToggle)].Read) == "Yes")   {
+                toggleBook.Read = "No";
+                myLibrary[parseInt(retrieveBookToToggle)].Read = toggleBook.Read;
+            } else if ((myLibrary[parseInt(retrieveBookToToggle)].Read) == "No")  {
+                toggleBook.Read = "Yes";
+                myLibrary[parseInt(retrieveBookToToggle)].Read = toggleBook.Read;
+            }
+            displayBooks();
+        }
+
         for (let key in myLibrarys) {
             console.log(`${key}: ${myLibrarys[key]}`);
             const paragraph = document.createElement('p');
@@ -57,11 +85,11 @@ function displayBooks() {
             card.appendChild(paragraph);
             
         }
+        index++
     })
 
 }
 
-// pushToLibrary('gasfd', 'sdasd', 'sdsdas', 'sdsd');
 
 
 const submitButton = document.querySelector('.Submit');
@@ -83,3 +111,9 @@ submitButton.addEventListener('click', () => {
 })
 
 
+// Book.prototype = Object.create(Book.prototype);
+// const toggleColor = new Book();
+
+// if (toggleColor.Read = "No") {
+    
+// } 
